@@ -17,11 +17,10 @@ $(document).ready(function () {
   });
 });
 
-const api_status = $('DIV#api_status');
-$.ajax('http://0.0.0.0:5001/api/v1/status/').done(function(data) {
-    if (data.status == 'OK') {
-	api_status.addClass('available');
-    } else {
-	api_status.removeClass('available');
-    }
+$.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
+  if (textStatus === 'success' && data.status === 'OK') {
+    $("#api_status").addClass('available');
+  } else {
+    $("#api_status").removeClass('available');
+  }
 });
